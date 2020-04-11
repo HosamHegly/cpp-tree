@@ -118,7 +118,7 @@ TEST_CASE("Test for Family Tree")
     family::Tree T ("fabio"); 
 	T.addFather("fabio", "nissan")   
 	 .addMother("fabio", "hefzi")  
-	 .addFather("hefzi", "Samuel")
+	 .addFather("nissan", "Samuel")
 	 .addMother("nissan", "Rivka")
 	 .addFather("Samuel", "Isaac")
      .addMother("Samuel", "Sarah");
@@ -139,7 +139,7 @@ TEST_CASE("Test for Family Tree")
     CHECK(T.find("great-grandmother")==string("Sarah"));          
     CHECK(T.find("great-grandfather")==string("Isaac"));               
     
-    T.remove("Isaac");               
+     T.remove("Isaac") ;              
     CHECK(T.relation("Isaac")==string("unrelated"));
     CHECK(T.relation("Terah")==string("unrelated"));
     CHECK(T.relation("haim")==string("unrelated"));
@@ -202,7 +202,7 @@ TEST_CASE("Building the tree - mati")
     CHECK(T.relation("haim") == string("grandfather"));
     CHECK(T.relation("leiv") == string("great-grandfather"));
     CHECK(T.relation("kobi") == string("great-great-grandfather"));
-    CHECK(T.relation("momo") == string("great-great-graet-grandfather"));
+    CHECK(T.relation("momo") == string("great-great-great-grandfather"));
     CHECK(T.relation("orli") == string("mother"));
     CHECK(T.relation("titi") == string("grandmother"));
     CHECK(T.relation("bell") == string("great-grandmother"));
@@ -230,7 +230,7 @@ TEST_CASE("Building the tree - mati")
     CHECK(T.relation("haim") == string("grandfather"));
     CHECK(T.relation("leiv") == string("great-grandfather"));
     CHECK(T.relation("kobi") == string("great-great-grandfather"));
-    CHECK(T.relation("momo") == string("graet-great-great-grandfather"));
+    CHECK(T.relation("momo") == string("great-great-great-grandfather"));
     CHECK(T.relation("orli") == string("mother"));
     CHECK(T.relation("titi") == string("grandmother"));
     CHECK(T.relation("bell") == string("unrelated"));
@@ -251,17 +251,18 @@ TEST_CASE("A Tree for Gorg")
     CHECK( T.relation("sarah") == string("mother"));
     CHECK( T.relation("sasi") == string("grandfather"));
     CHECK( T.relation("carla") == string("grandmother"));
-    CHECK( T.relation("kobi") == string("great-grandfather"));
-    CHECK( T.relation("kati") == string("great-grandmother"));
+    CHECK( T.relation("kobi") == string("grandfather"));
+    CHECK( T.relation("kati") == string("grandmother"));
     CHECK(T.relation("gorg")== string("me"));
 
     CHECK(T.find("mother")==string("sarah"));
     CHECK(T.find("father")==string("mike"));
     CHECK(T.find("grandmother")==string("carla"));
     CHECK(T.find("grandfather")==string("sasi"));
+    
     CHECK(T.find("me")==string("gorg")); 
-    CHECK(T.find("great-grandmother")==string("kati"));          
-    CHECK(T.find("great-grandfather")==string("kobi"));  
+    CHECK(T.find("grandmother")==string("carla"));          
+    CHECK(T.find("grandfather")==string("sasi"));  
 
    T.remove("kobi");               
     CHECK(T.relation("Isaac")==string("unrelated"));
@@ -281,7 +282,7 @@ TEST_CASE("A Tree for Gorg")
     CHECK( T.relation("sasi") == string("grandfather"));
     CHECK( T.relation("carla") == string("grandmother"));
     CHECK( T.relation("kobi") != string("great-grandfather"));
-    CHECK( T.relation("kati") == string("great-grandmother"));
+    CHECK( T.relation("kati") != string("great-grandmother"));
     CHECK(T.relation("gorg")== string("me"));
 
 }

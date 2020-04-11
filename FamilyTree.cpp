@@ -251,24 +251,26 @@ bool Tree::searchremove(node* n,string name)
     
     if(n->left!=NULL&&n->left->data==name)
     {
-        
-        
-    remove(n->left);
-   n->left=NULL;
+        remove(n->left);
+        n->left=NULL;
+        return true;
+
+   
     return true;
     }
     if(n->right!=NULL&&n->right->data==name)
     {
+   
     remove(n->right);
-   n->right=NULL;
-    
-    
+    n->right=NULL;
+
     return true;
     }
     
     
-    if(searchremove(n->left,name))
+    if(search(name,n->left))
     return searchremove(n->left,name);
+    else
     
         return searchremove(n->right,name);
 
@@ -283,7 +285,7 @@ void Tree:: remove(string name)
     if(name==this->root->data)
      { remove(this->root->left);
      remove(this->root->right);
-     this->root=NULL;
+     this->root=NULL;              
     return;
 
    
@@ -319,6 +321,7 @@ void Tree::display()
     int i = 0;
     display1(this->root, i);
 }
+
 
 
 
