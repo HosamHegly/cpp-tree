@@ -285,4 +285,3 @@ TEST_CASE("A Tree for Gorg")
     CHECK(T.relation("gorg")== string("me"));
 
 }
-© 2020 GitHub, Inc.
